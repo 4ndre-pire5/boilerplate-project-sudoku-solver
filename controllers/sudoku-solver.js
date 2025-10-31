@@ -22,7 +22,19 @@ class SudokuSolver {
   }
 
   checkRegionPlacement(puzzleString, row, column, value) {
+    const rowIndex = row.charCodeAt(0) - 65;
+    const colIndex = column - 1;
 
+    const startRow = Math.floor(rowIndex / 3) * 3;
+    const startCol = Math.floor(colIndex / 3) * 3;
+
+    for (let r = 0; r < 3; r++){
+      for (let c = 0; c < 3; c++) {
+        const idx = (startRow + r) * 9 + (startCol + c);
+        if (puzzleString[idx] === value) return false;
+      }
+    }
+    return true;
   }
 
   solve(puzzleString) {
