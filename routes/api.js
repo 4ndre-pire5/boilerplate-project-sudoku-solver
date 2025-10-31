@@ -32,6 +32,13 @@ module.exports = function (app) {
         return res.json({ error: 'Invalid value' });
       }
 
+      const rows = 'ABCDEFGHI';
+      const index = rows.indexOf(row) * 9 + (column - 1);
+      if (puzzle[index] === value) {
+        // ⚡ Caso especial: valor já está presente na célula → é válido
+        return res.json({ valid: true });
+      }
+
       const conflicts = [];
       if (!solver.checkRowPlacement(puzzle, row, column, value)) conflicts.push('row');
       if (!solver.checkColPlacement(puzzle, row, column, value)) conflicts.push('column');
