@@ -14,7 +14,11 @@ class SudokuSolver {
   }
 
   checkColPlacement(puzzleString, row, column, value) {
-
+    const colIndex = column - 1;
+    for (let r = 0; r < 9; r++){
+      if (puzzleString[r * 9 + colIndex] === value) return false;
+    }
+    return true;
   }
 
   checkRegionPlacement(puzzleString, row, column, value) {
