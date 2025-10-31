@@ -8,7 +8,9 @@ class SudokuSolver {
   }
 
   checkRowPlacement(puzzleString, row, column, value) {
-
+    const rowIndex = row.charCodeAt(0) - 65;
+    const rowValues = puzzleString.slice(rowIndex * 9, rowIndex * 9 + 9);
+    return !rowValues.includes(value);
   }
 
   checkColPlacement(puzzleString, row, column, value) {
